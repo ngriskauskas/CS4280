@@ -32,6 +32,12 @@ class ASM:
             self.ids.append(tempVar)
             self.file.write("STORE " + tempVar + "\n")
             self.file.write("WRITE " + tempVar + "\n")
+        elif root.name == "vars":
+            if root.tokens is not None:
+                self.file.write("LOAD " + str(root.tokens[3].instance) + "\n")
+                self.file.write("STORE " + root.getIdToken().instance + "\n")
+                if root.children[0] is not None:
+                    self.convert(root.children[0])
         elif root.name == "in":
             idToken = root.getIdToken()
             self.file.write("READ " + idToken.instance+ "\n" )
