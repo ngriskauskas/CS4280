@@ -1,15 +1,18 @@
 from scanner import Scanner, Token, TokenID
-
+import copy
 
 class Stack:
     items = []
+    ids = []
     globalDistance = 0
 
     def push(self, token):
         self.items.append((token, self.globalDistance))
+        if token.instance not in self.ids:
+            self.ids.append(token.instance)
 
     def pop(self, distance):
-        tempItems = self.items.copy()
+        tempItems = copy.copy(self.items)
         for item in tempItems:
             if item[1] == distance:
                 self.items.remove(item)

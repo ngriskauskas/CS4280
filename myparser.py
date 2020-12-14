@@ -195,7 +195,7 @@ class Parser:
                     (tok4, cons) = self.TryConsume("then")
                     if cons:
                         block = self.block()
-                        return Node("iff", [expr1, R0, expr2, block], [tok1, tok2, tok3, tok4])
+                        return Node("if", [expr1, R0, expr2, block], [tok1, tok2, tok3, tok4])
         self.error()
 
     def loop(self):

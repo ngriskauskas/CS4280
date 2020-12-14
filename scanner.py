@@ -1,4 +1,3 @@
-from enum import Enum
 from filter import Filter
 
 keywords = ["start", "stop", "iter", "void", "int", "exit",
@@ -8,7 +7,7 @@ operators = ["=", "=>", "=<", "==", ":", "+", "-", "*",
              "/", "%", ".", "(", ")", ",", "{", "}", ";", "[", "]"]
 
 
-class TokenID(Enum):
+class TokenID():
     IDENT_tk = 1
     NUM_tk = 2
     KW_tk = 3
@@ -35,7 +34,7 @@ class Scanner:
             return Token(TokenID.KW_tk, word, line)
         elif word in operators:
             return Token(TokenID.OP_tk, word, line)
-        elif word.isnumeric():
+        elif unicode(word, 'utf-8').isnumeric():
             return Token(TokenID.NUM_tk, word[0: 7], line)
         elif word[0].islower() and word.isalnum():
             return Token(TokenID.IDENT_tk, word[0: 7], line)
